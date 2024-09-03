@@ -4,3 +4,4 @@ It is a self-hosted Ory.sh server that enables builders to leverage signup, logi
 
 Please refer to the documentation to integrate Lemonade OAuth2 into your platfrorm or build applications on the Lemonade Protocol: 
 https://lemonade.gitbook.io/welcome-to-lemonade/auth2.0
+
