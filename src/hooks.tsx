@@ -4,15 +4,16 @@ import {getUserManager, restoreUser} from "./helper/oidc";
 import {getToken, setToken} from "./helper/storage";
 import {getUser, setUser} from "./helper/storage";
 
-export function useOauth2SignIn(redirct_uri?: string) {
+export function useOauth2SignIn(redirect_uri?: string) {
   const [auth, setAuth] = useState(!!getToken());
 
-  const signIn = async () => {
+  const signIn = async (email?: string) => {
     const userManager = getUserManager();
 
     await userManager.signinRedirect({
       scope: "openid offline_access",
-      redirect_uri: redirct_uri || `${window.location.origin}/oauth2/callback`,
+      redirect_uri: redirect_uri || `${window.location.origin}/oauth2/callback`,
+      extraQueryParams: {email: email || ""},
     });
   };
 
