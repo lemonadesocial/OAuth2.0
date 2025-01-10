@@ -1,12 +1,16 @@
 import {useQuery} from "@apollo/client";
+import {useState} from "react";
+
+import {loginRedirectUri, logoutRedirectUri} from "../config";
 
 import {getMeQuery, GetMeQueryResponse} from "../api/user";
 
 import {useOauth2SignIn} from "../hooks";
-import {useState} from "react";
 
 export default function Home() {
-  const {auth, signIn, signOut} = useOauth2SignIn();
+  const {auth, signIn, signOut} = useOauth2SignIn(
+    `${window.location.origin}${loginRedirectUri}`,
+  );
 
   const [email, setEmail] = useState("");
 
@@ -19,7 +23,7 @@ export default function Home() {
   };
 
   const logout = () => {
-    signOut();
+    signOut(`${window.location.origin}${logoutRedirectUri}`);
   };
 
   return (
